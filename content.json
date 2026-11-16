@@ -1,0 +1,19 @@
+{
+  "to": "My love",
+  "message": "I made this little corner of the internet just for you. Wander around, there are notes, memories, and more to come.",
+
+  "notes": [
+    { "text": "You make ordinary days feel like my favourite ones.", "color": "pink" },
+    { "text": "Don’t forget to drink water. Love you!", "color": "yellow" },
+    { "text": "Can’t wait to see you.", "color": "green" }
+  ],
+
+  "memories": [
+    {
+      "date": "2026-11-16",
+      "title": "The day I built this",
+      "text": "I wanted a place to keep all the little things I love about us.",
+      "photo": ""
+    }
+  ]
+}

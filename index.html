@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For You</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Playfair+Display:ital,wght@0,500;1,500&family=Lato:wght@400;700&display=swap">
+<style>
+:root{--bg:#fdf3f2;--card:#fff;--ink:#4a3a3f;--soft:#9a7f86;--rose:#d98c9b;--line:#f0d9dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#241a1e;--card:#33252b;--ink:#f6e6ea;--soft:#c9a5af;--rose:#e6a1b0;--line:#4a3640}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:'Lato',system-ui,sans-serif;line-height:1.6;min-height:100vh}
+nav{display:flex;justify-content:center;gap:6px;padding:18px 12px 6px;flex-wrap:wrap}
+nav a{color:var(--soft);text-decoration:none;padding:8px 16px;border-radius:99px;font-size:15px}
+nav a.on{background:var(--card);color:var(--rose);font-weight:700;box-shadow:0 2px 10px rgba(217,140,155,.2)}
+main{max-width:860px;margin:0 auto;padding:20px 18px 80px}
+h1,h2{font-family:'Playfair Display',Georgia,serif;font-weight:500;margin:0}
+.hero{text-align:center;padding:60px 10px}
+.kicker{font-family:'Caveat',cursive;font-size:28px;color:var(--rose);margin:0}
+.hero h1{font-size:clamp(44px,12vw,80px);font-style:italic;line-height:1.1}
+.msg{max-width:480px;margin:18px auto 28px;color:var(--soft);font-size:18px;white-space:pre-wrap}
+.btn{display:inline-block;background:var(--rose);color:#fff;border-radius:99px;padding:11px 24px;font-weight:700;text-decoration:none;margin:4px}
+.btn.ghost{background:transparent;color:var(--rose);border:1.5px solid var(--rose)}
+.head{text-align:center;margin:16px 0 28px}.head h2{font-size:34px}.head p{color:var(--soft);margin:4px 0 0}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;padding:8px}
+.note{position:relative;min-height:190px;padding:22px 18px 16px;color:#3d3236;font-family:'Caveat',cursive;font-size:25px;line-height:1.25;box-shadow:0 8px 18px rgba(80,40,50,.18);border-radius:3px;transform:rotate(var(--r));white-space:pre-wrap}
+.note::before{content:"";position:absolute;top:-9px;left:50%;width:54px;height:18px;margin-left:-27px;background:rgba(255,255,255,.55);transform:rotate(-2deg)}
+.tl{position:relative;margin-left:14px;padding-left:26px;border-left:2px solid var(--line)}
+.mem{position:relative;background:var(--card);border-radius:16px;padding:18px;margin-bottom:26px;box-shadow:0 4px 18px rgba(217,140,155,.15)}
+.mem::before{content:"";position:absolute;left:-36px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--rose);border:3px solid var(--bg)}
+.mem time{font-family:'Caveat',cursive;font-size:22px;color:var(--rose)}
+.mem h3{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 6px}
+.mem p{margin:0;white-space:pre-wrap}
+.mem img{width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-top:14px}
+.empty{text-align:center;color:var(--soft);padding:40px 10px}
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<main id="root"><p class="empty">Loading…</p></main>
+<script>
+const COL={yellow:'#fff3a8',pink:'#ffd1dc',green:'#d4f0e2',blue:'#d8e4ff',orange:'#ffe0c2'};
+const ROT=[-2,1.5,-1,2,-1.5,1];
+const KEYS=Object.keys(COL);
+let S=null;
+const root=document.getElementById('root');
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pg=()=>['home','notes','memories'].includes(location.hash.slice(1))?location.hash.slice(1):'home';
+function fmt(d){const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}
+function render(){
+  const p=pg();
+  document.getElementById('nav').innerHTML=[['home','Home'],['notes','Notes for you'],['memories','Our memories']].map(([k,l])=>`<a href="#${k}" class="${p===k?'on':''}">${l}</a>`).join('');
+  document.title=S.to?'For '+S.to:'For You';
+  let h='';
+  if(p==='home'){
+    h=`<section class="hero"><p class="kicker">for</p><h1>${esc(S.to)}</h1><p class="msg">${esc(S.message)}</p><a class="btn" href="#notes">Read my notes</a><a class="btn ghost" href="#memories">Our memories</a></section>`;
+  }else if(p==='notes'){
+    h='<div class="head"><h2>Notes for you</h2><p>A few things I wanted you to know</p></div><div class="board">'+
+      (S.notes||[]).map((n,i)=>`<div class="note" style="background:${COL[n.color]||COL[KEYS[i%KEYS.length]]};--r:${ROT[i%ROT.length]}deg">${esc(n.text)}</div>`).join('')+'</div>';
+  }else{
+    const m=(S.memories||[]).slice().sort((a,b)=>a.date<b.date?1:-1);
+    h='<div class="head"><h2>Our memories</h2><p>Moments I never want to forget</p></div><div class="tl">'+
+      m.map(x=>`<article class="mem"><time>${esc(fmt(x.date))}</time><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>${x.photo?`<img src="${esc(x.photo)}" alt="" loading="lazy">`:''}</article>`).join('')+'</div>';
+  }
+  root.innerHTML=h;
+}
+fetch('content.json?v='+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{S=d;render()})
+.catch(()=>{root.innerHTML='<p class="empty">The content couldn’t be loaded. If you just edited content.json, check for a missing comma or quotation mark.</p>'});
+window.addEventListener('hashchange',()=>S&&render());
+</script>
+</body>
+</html>
