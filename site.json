@@ -4,14 +4,14 @@
 
   "tiles": {
     "calendar": "photos/Calendar.jpg",
-    "letter": "",
-    "openwhen": "",
-    "secret": "",
-    "collection": ""
+    "letter": "photos/letter.jpg",
+    "openwhen": "photos/openwhen.jpg",
+    "secret": "photos/lock.jpg",
+    "collection": "photos/collection.jpg"
   },
 
   "secret": {
-    "password": "forever",
+    "password": "My Dream",
     "hint": "Something I always say to you",
     "title": "Just for you",
     "blocks": [
