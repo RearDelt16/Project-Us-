@@ -10,21 +10,21 @@
     "date": "2026-01-16",
     "title": "Cooper's Birthday",
     "text": "The number 16 has always had meaning, but now I can see even more.",
-    "photo": "",
+    "photo": "photos/goofy.jpg",
     "yearly": true
   },
   {
     "date": "2026-12-25",
     "title": "Christmas",
     "text": "One of my favourtite times of the year, and the only thing I am wishing for, is that I can spend it with you.",
-    "photo": "",
+    "photo": "photos/polaroid1.jpg",
     "yearly": false
   },
    {
     "date": "2026-03-31",
     "title": "Kayla's Birthday",
     "text": "When you finally get to take off those Green P's today is all about you, and I cant wait to celebrate it with you.",
-    "photo": "",
+    "photo": "photos/Kayla2.jpg",
     "yearly": true
   }
 ]
