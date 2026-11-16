@@ -1,24 +1,30 @@
 [
   {
-    "date": "2026-06-12",
-    "end": "2026-06-15",
-    "title": "Our trip to the coast",
-    "text": "Write about the trip here: where you went, what you did, what you want to remember.",
+    "date": "2026-11-10",
+    "title": "A moment of love",
+    "text": "I will never forget those moments sitting across from you at that seafood boil, and the kiss we shared as we said goodbye.",
     "photos": [],
     "yearly": false
   },
   {
-    "date": "2026-02-14",
-    "title": "Our anniversary",
-    "text": "The day it all started. Write why it matters to you here.",
+    "date": "2026-01-16",
+    "title": "Cooper's Birthday",
+    "text": "The number 16 has always had meaning, but now I can see even more.",
     "photo": "",
     "yearly": true
   },
   {
     "date": "2026-12-25",
-    "title": "Our first Christmas together",
-    "text": "Something to look forward to.",
+    "title": "Christmas",
+    "text": "One of my favourtite times of the year, and the only thing I am wishing for, is that I can spend it with you.",
     "photo": "",
     "yearly": false
+  },
+   {
+    "date": "2026-03-31",
+    "title": "Kayla's Birthday",
+    "text": "When you finally get to take off those Green P's today is all about you, and I cant wait to celebrate it with you.",
+    "photo": "",
+    "yearly": true
   }
 ]
