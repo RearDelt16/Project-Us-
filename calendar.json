@@ -1,0 +1,24 @@
+[
+  {
+    "date": "2026-06-12",
+    "end": "2026-06-15",
+    "title": "Our trip to the coast",
+    "text": "Write about the trip here: where you went, what you did, what you want to remember.",
+    "photos": [],
+    "yearly": false
+  },
+  {
+    "date": "2026-02-14",
+    "title": "Our anniversary",
+    "text": "The day it all started. Write why it matters to you here.",
+    "photo": "",
+    "yearly": true
+  },
+  {
+    "date": "2026-12-25",
+    "title": "Our first Christmas together",
+    "text": "Something to look forward to.",
+    "photo": "",
+    "yearly": false
+  }
+]

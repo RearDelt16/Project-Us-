@@ -1,0 +1,21 @@
+{
+  "to": "My love",
+  "message": "I made this little corner of the internet just for you.",
+
+  "tiles": {
+    "calendar": "",
+    "letter": "",
+    "openwhen": "",
+    "secret": "",
+    "collection": ""
+  },
+
+  "secret": {
+    "password": "forever",
+    "hint": "Something I always say to you",
+    "title": "Just for you",
+    "blocks": [
+      { "text": "This page is only for you. I’ll keep adding to it.", "photo": "" }
+    ]
+  }
+}
