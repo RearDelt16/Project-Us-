@@ -46,21 +46,21 @@ const KEYS=Object.keys(COL);
 let S=null;
 const root=document.getElementById('root');
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const pg=()=>['home','notes','memories'].includes(location.hash.slice(1))?location.hash.slice(1):'home';
+const pg=()=>['home','notes','Timeline'].includes(location.hash.slice(1))?location.hash.slice(1):'home';
 function fmt(d){const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}
 function render(){
   const p=pg();
-  document.getElementById('nav').innerHTML=[['home','Home'],['notes','Notes for you'],['memories','Our memories']].map(([k,l])=>`<a href="#${k}" class="${p===k?'on':''}">${l}</a>`).join('');
+  document.getElementById('nav').innerHTML=[['home','Home'],['notes','Notes for you'],['Timeline','Our timeline']].map(([k,l])=>`<a href="#${k}" class="${p===k?'on':''}">${l}</a>`).join('');
   document.title=S.to?'For '+S.to:'For You';
   let h='';
   if(p==='home'){
-    h=`<section class="hero"><p class="kicker">for</p><h1>${esc(S.to)}</h1><p class="msg">${esc(S.message)}</p><a class="btn" href="#notes">Read my notes</a><a class="btn ghost" href="#memories">Our memories</a></section>`;
+    h=`<section class="hero"><p class="kicker">for</p><h1>${esc(S.to)}</h1><p class="msg">${esc(S.message)}</p><a class="btn" href="#notes">Read my notes</a><a class="btn ghost" href="#timeline">Our timeline</a></section>`;
   }else if(p==='notes'){
     h='<div class="head"><h2>Notes for you</h2><p>A few things I wanted you to know</p></div><div class="board">'+
       (S.notes||[]).map((n,i)=>`<div class="note" style="background:${COL[n.color]||COL[KEYS[i%KEYS.length]]};--r:${ROT[i%ROT.length]}deg">${esc(n.text)}</div>`).join('')+'</div>';
   }else{
-    const m=(S.memories||[]).slice().sort((a,b)=>a.date<b.date?1:-1);
-    h='<div class="head"><h2>Our memories</h2><p>Moments I never want to forget</p></div><div class="tl">'+
+    const m=(S.timeline||[]).slice().sort((a,b)=>a.date<b.date?1:-1);
+    h='<div class="head"><h2>Our timeline</h2><p>Saving the moments of future we are building</p></div><div class="tl">'+
       m.map(x=>`<article class="mem"><time>${esc(fmt(x.date))}</time><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>${x.photo?`<img src="${esc(x.photo)}" alt="" loading="lazy">`:''}</article>`).join('')+'</div>';
   }
   root.innerHTML=h;
