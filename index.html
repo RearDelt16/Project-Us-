@@ -63,7 +63,8 @@ const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==nul
 const fmt=d=>{const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})};
 const img=p=>p?`<img src="${esc(p)}" alt="" loading="lazy">`:'';
 const gal=e=>{const p=[...(e.photos||[]),...(e.photo?[e.photo]:[])].filter(Boolean);const z=s=>`<img src="${esc(s)}" alt="" loading="lazy" data-act="zoom" data-src="${esc(s)}">`;return p.length===1?z(p[0]):p.length?'<div class="gal">'+p.map(z).join('')+'</div>':''};
-let D={},last={};
+let D={},last={},unlocked=false;
+try{localStorage.removeItem('unlocked')}catch(e){}
 
 const TILES=[['calendar','📅','A calendar of us'],['letter','💌','A letter from me'],['openwhen','🤍','Open when…'],['secret','🔒','A secret'],['collection','✨','Our collection']];
 const MOODS=[['sad','😢','Open when you’re sad'],['mad','😠','Open when you’re mad'],['happy','😊','Open when you’re happy'],['tired','😴','Open when you’re tired'],['need','🤍','Open when you need me']];
@@ -101,7 +102,7 @@ openwhen(){
 },
 secret(){
   const s=D.site.secret||{};
-  if(LS.get('unlocked',false)){
+  if(unlocked){
     return `<div class="head"><h2>${esc(s.title||'Just for you')}</h2></div><div class="sec">`+(s.blocks||[]).map(b=>`${b.text?`<p>${esc(b.text)}</p>`:''}${img(b.photo)}`).join('')+'</div>';
   }
   return `<div class="head"><h2>A secret</h2></div><div class="lock" id="lock"><p class="big">What’s the magic word?</p><input id="pw" type="text" autocomplete="off" autocapitalize="none" placeholder="Enter the password"><div class="hint" id="hint">${esc(s.hint||'')}</div><button class="btn" data-act="unlock">Unlock</button></div>`;
@@ -138,12 +139,12 @@ document.addEventListener('click',e=>{
     modal(arr.length?`<p class="txt">${esc(pick(arr,b.dataset.k))}</p>`:'<p class="txt">No notes here yet. Check back soon.</p>');
   }else if(a==='unlock'){
     const s=D.site.secret||{},v=$('#pw').value.trim().toLowerCase();
-    if(v&&v===String(s.password||'').trim().toLowerCase()){LS.set('unlocked',true);render()}
+    if(v&&v===String(s.password||'').trim().toLowerCase()){unlocked=true;render()}
     else{const l=$('#lock');l.classList.remove('shake');void l.offsetWidth;l.classList.add('shake');$('#hint').textContent='Not quite, try again 💕'}
   }
 });
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='pw')document.querySelector('[data-act="unlock"]').click()});
-window.addEventListener('hashchange',()=>Object.keys(D).length&&render());
+window.addEventListener('hashchange',()=>{unlocked=false;Object.keys(D).length&&render()});
 
 (async()=>{
   for(const f of ['site','calendar','letters','openwhen']){
