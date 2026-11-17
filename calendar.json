@@ -9,7 +9,7 @@
   {
     "date": "2026-01-16",
     "title": "Cooper's Birthday",
-    "text": "The number 16 has always had meaning, but now I can see even more.",
+    "text": "The number 16 has always had meaning, but now it means so much more.",
     "photo": "photos/goofy.jpeg",
     "yearly": true
   },
@@ -20,11 +20,18 @@
     "photo": "photos/polaroid1.jpeg",
     "yearly": false
   },
-   {
+  {
     "date": "2026-03-31",
     "title": "Kayla's Birthday",
     "text": "When you finally get to take off those Green P's today is all about you, and I cant wait to celebrate it with you.",
     "photo": "photos/Kayla2.jpeg",
     "yearly": true
+  }, 
+  {
+    "date": "2026-11-17",
+    "title": "Beverly",
+    "text": "I am so excited to be able to sit across from you again, we have always been quite good at nights out, I am excited to add our photos from the night here to keep as a reminder of the beautiful time we shared.",
+    "photo": "",
+    "yearly": false
   }
 ]
