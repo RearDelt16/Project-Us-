@@ -30,8 +30,8 @@
   {
     "date": "2026-11-17",
     "title": "Beverly",
-    "text": "I am so excited to be able to sit across from you again, we have always been quite good at nights out, I am excited to add our photos from the night here to keep as a reminder of the beautiful time we shared.",
-    "photo": "",
+    "text": "sitting across from you and seeing the sunset over your shoulder is a memory that I will not ever forget, and I am so happy to have shared such a beautiful night with you. from the Oysters to the cocktails, and massages back home, every second with you was a dream come true.",
+    "photo": ["photos/Beverly1.jpeg", "photos/Beverly2.jpeg"],
     "yearly": false
   }
 ]
