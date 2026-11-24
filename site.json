@@ -1,13 +1,14 @@
 {
   "to": "My love",
   "message": "I created this little corner of the internet just for you, a safe space you can come back to for when you want a reminder of just how much I love you.",
+  "web3formsKey": "1607e9ad-72bb-4c39-96c1-b3ec9bed38d7",
 
   "tiles": {
     "calendar": "photos/Calendar.jpg",
     "letter": "photos/letter.jpg",
     "openwhen": "photos/openwhen.jpg",
     "secret": "photos/lock.jpg",
-    "collection": "photos/collection.jpg"
+    "collection": "photos/collection.jpg", 
   },
 
   "secret": {
