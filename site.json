@@ -8,7 +8,8 @@
     "letter": "photos/letter.jpg",
     "openwhen": "photos/openwhen.jpg",
     "secret": "photos/lock.jpg",
-    "collection": "photos/collection.jpg"
+    "collection": "photos/collection.jpg", 
+    "write": "photos/write.jpg"
   },
 
   "secret": {
